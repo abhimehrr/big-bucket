@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .light {
+        --text: 10 27 31;
+        --background: 244 250 251;
+        --primary: 34 92 109;
+        --secondary: 131 138 216;
+        --accent: 74 51 163;
+    }
+
+    .dark {
+        --text: 224 241 245;
+        --background: 4 10 11;
+        --primary: 145 204 220;
+        --secondary: 39 46 122;
+        --accent: 114 92 203;
+    }
+
+    .golden-hour {
+        --text: 252 223 223;
+        --background: 33 3 5;
+        --primary: 241 118 125;
+        --secondary: 152 90 15;
+        --accent: 232 186 28;
+    }
+
+    .jungle-funk {
+        --text: 227 250 219;
+        --background: 6 19 3;
+        --primary: 164 240 141;
+        --secondary: 101 19 144;
+        --accent: 225 32 102;
+    }
+
+    .starry-twilight {
+        --text: 223 231 249;
+        --background: 2 4 10;
+        --primary: 129 155 233;
+        --secondary: 130 23 23;
+        --accent: 224 202 77;
+    }
+}
+
+::-webkit-scrollbar {
+    @apply w-1
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-slate-900
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-slate-400 rounded-full
+}
+
+::-webkit-inner-spin-button {
+    display: none;
+}
+
+::-webkit-outer-spin-button {
+    display: none;
+}
+
+::selection {
+    @apply bg-secondary text-text
+}
