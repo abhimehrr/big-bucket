@@ -11,42 +11,9 @@ The Online Shopping List Manager is a web-based application designed to streamli
 
 ## Features
 
-<<<<<<< HEAD
 - **Category Creation and Management:** 
     Users can create custom categories (e.g., Groceries, Electronics, Clothing).
     Each category can hold multiple items, making the shopping list organized and easy to navigate.
-=======
-Follow these steps to get the project up and running locally:
-
-1. **Clone the Repository**: 
-   ```bash
-   git clone git@github.com:abhimehrr/react-boilerplate.git
-
-2. **Install Dependencies**:
-    ```bash
-    npm install
-
-3. **Start Development Server**:
-    ```bash
-    npm run dev
-
-4. **Build for Production**:
-    ```bash
-    npm run build
-
-
-## Project Structure:
-- public/: Contains static assets and the HTML template for the application.
-- src/: Houses the main source code of the React application.
-- tailwind.config.js: Configuration file for Tailwind CSS.
-- vite.config.js: Configuration file for Vite.
-- Contributing:
-- Contributions are welcome! Feel free to open issues or pull requests for any improvements, features, or bug fixes.
-
-## License:
-This project is licensed under the MIT License.
->>>>>>> parent of 27f384e (Update README.md)
-
 
 - **Item Addition and Deletion:** 
     Users can add items to specific categories.
@@ -64,6 +31,26 @@ This project is licensed under the MIT License.
     Since the data is stored locally, there is no risk of data breaches or leaks.
     Users do not need to create an account or provide personal information.
 
+
+1. **Clone the Repository**: 
+   ```bash
+
+   gh repo clone abhimehrr/big-bucket
+
+2. **Install Dependencies**:
+    ```bash
+
+    npm install
+
+3. **Start Development Server**:
+    ```bash
+
+    npm run dev
+
+4. **Build for Production**:
+    ```bash
+
+    npm run build
 
 ## Potential Use Cases
 
