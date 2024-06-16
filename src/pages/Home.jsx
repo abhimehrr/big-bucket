@@ -11,6 +11,9 @@ export default function Home() {
   const [createCategory, setCreateCategory] = useState(false);
   const createCategoryRef = useRef(null);
 
+  const shopping = categories?.filter((c) => !c.todoMode);
+  const todo = categories?.filter((c) => c.todoMode);
+
   return (
     <div className="my-4 relative">
       <div className="flex justify-between">
@@ -31,7 +34,7 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className="py-8">
+      <div className="py-6">
         {categories.length < 1 ? (
           <div className="mt-20 sm:mt-32">
             <div className="mt-2 text-xl text-center text-text/50">
@@ -48,21 +51,33 @@ export default function Home() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-            {categories?.map((c) => (
-              <CategoryItem key={c.id} {...c} />
-            ))}
-            <button
-              onClick={() => createCategoryRef.current.click()}
-              className="p-4 py-5 border border-text hover:bg-text/10 rounded transition-all"
-            >
-              <div className="flex flex-col items-center justify-center gap-2 text-text/50">
-                <i className="fa-solid fa-plus text-xl"></i>
-                <span className="font-medium tracking-wide text-wrap max-w-20 text-lg">
-                  Create
-                </span>
+          <div className="md:flexgap-6">
+            {shopping?.length > 0 && (
+              <div className="mb-10">
+                <h3 className="text-3xl mb-6 font-medium tracking-wide">
+                  Shopping
+                </h3>
+                <div className="grid grid-cols-3 max-[400px]:grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+                  {shopping?.map((c) => (
+                    <CategoryItem key={c.id} {...c} />
+                  ))}
+                </div>
               </div>
-            </button>
+            )}
+            {todo?.length > 0 && (
+              <div>
+                <h3 className="text-3xl mb-4 font-medium tracking-wide">
+                  Todo
+                </h3>
+                <div className="grid grid-cols-3 max-[400px]:grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+                  {todo
+                    ?.filter((c) => c.todoMode)
+                    ?.map((c) => (
+                      <CategoryItem key={c.id} {...c} />
+                    ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -72,3 +87,18 @@ export default function Home() {
     </div>
   );
 }
+
+/*
+<button
+                onClick={() => createCategoryRef.current.click()}
+                className="hidden p-4 py-5 border border-text hover:bg-text/10 rounded transition-all"
+              >
+                <div className="flex flex-col items-center justify-center gap-2 text-text/50">
+                  <i className="fa-solid fa-plus text-xl"></i>
+                  <span className="font-medium tracking-wide text-wrap max-w-20 text-lg">
+                    Create
+                  </span>
+                </div>
+              </button>
+
+ */

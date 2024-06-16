@@ -78,7 +78,7 @@ export const ToastConfirm = ({ title, msg, handleFn = () => {}, dialog }) => {
 export const Toast = ({ title, close = false, children }) => {
   return (
     <div className="fixed top-4 right-8 z-50">
-      <div className="relative min-w-72 min-h-10 py-2 px-4 text-slate-800 bg-slate-200 rounded-lg">
+      <div className="relative max-w-80 min-h-10 py-2 px-4 text-slate-800 bg-slate-200 rounded-lg">
         <h2 className="font-semibold tracking-wide text-left text-secondary">
           {title}
         </h2>
@@ -90,7 +90,7 @@ export const Toast = ({ title, close = false, children }) => {
             <i className="fa-solid fa-xmark text-lg"></i>
           </div>
         )}
-        <div className="text-left">{children}</div>
+        <div className="text-left mt-2">{children}</div>
       </div>
     </div>
   );

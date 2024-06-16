@@ -2,11 +2,11 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 import { getItem, setItem } from "../../hooks/ls";
 
 const initial = {
-  items: [...getItem("items")],
+  items: [...getItem("todos")],
 };
 
-const itemSlice = createSlice({
-  name: "items",
+const todoSlice = createSlice({
+  name: "todos",
   initialState: initial,
   reducers: {
     addItem: (s, a) => {
@@ -15,21 +15,21 @@ const itemSlice = createSlice({
         ...a.payload,
         isChecked: false,
       });
-      setItem("items", s.items);
+      setItem("todos", s.items);
     },
     addItems: (s, a) => {
       s.items.push(...a.payload);
-      setItem("items", s.items);
+      setItem("todos", s.items);
     },
     deleteItem: (s, a) => {
       const temp = s.items.filter((c) => c.id !== a.payload);
       s.items = temp;
-      setItem("items", temp);
+      setItem("todos", temp);
     },
     deleteItemsByGroup: (s, a) => {
       const temp = s.items.filter((c) => c.category !== a.payload);
       s.items = temp;
-      setItem("items", temp);
+      setItem("todos", temp);
     },
     updateItem: (s, a) => {
       const temp = s.items;
@@ -41,7 +41,7 @@ const itemSlice = createSlice({
         }
       });
       s.items = temp;
-      setItem("items", temp);
+      setItem("todos", temp);
     },
     selectItem: (s, a) => {
       const temp = s.items;
@@ -51,7 +51,7 @@ const itemSlice = createSlice({
         }
       });
       s.items = temp;
-      setItem("items", temp);
+      setItem("todos", temp);
     },
     selectItems: (s, a) => {
       const temp = s.items;
@@ -59,12 +59,12 @@ const itemSlice = createSlice({
         temp[i].isChecked = a.payload;
       });
       s.items = temp;
-      setItem("items", temp);
+      setItem("todos", temp);
     },
     deleteSelectedItem: (s, a) => {
       const temp = s.items.filter((c) => !c.isChecked);
       s.items = temp;
-      setItem("items", temp);
+      setItem("todos", temp);
     },
   },
 });
@@ -78,6 +78,6 @@ export const {
   selectItem,
   selectItems,
   deleteSelectedItem,
-} = itemSlice.actions;
+} = todoSlice.actions;
 
-export default itemSlice.reducer;
+export default todoSlice.reducer;

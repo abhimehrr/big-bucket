@@ -4,12 +4,12 @@ import { deleteSelectedItem } from "../store/slices/itemSlice";
 import { Navigate, useParams } from "react-router-dom";
 
 // Components
-import AddItem from "../components/partials/AddItem";
-import Item from "../components/partials/Item";
 import { Confirm, Toast } from "../components/tiny/Dialog";
+import AddTodoItem from "../components/todo/AddTodoItem";
+import TodoItem from "../components/todo/TodoItem";
 
-export default function List() {
-  const { items } = useSelector((s) => s.items);
+export default function TodoList() {
+  const { items } = useSelector((s) => s.todos);
   const { categories } = useSelector((s) => s.categories);
 
   const [showConfirm, setShowConfirm] = useState(false);
@@ -49,7 +49,7 @@ export default function List() {
       </div>
       <div className="py-8 lg:grid grid-cols-2 items-start gap-6">
         <div className="max-lg:mb-8 bg-secondary/10 border border-secondary px-4 rounded-md">
-          <AddItem />
+          <AddTodoItem />
         </div>
 
         <div>
@@ -68,7 +68,7 @@ export default function List() {
               <div className="text-lg tracking-wide border border-text/40 border-b-transparent rounded-md">
                 <div
                   className="grid text-center md:px-4 border-b border-text/40 bg-secondary hover:bg-secondary/80 transition-all py-2 font-medium sticky top-0 rounded-t-md"
-                  style={{ gridTemplateColumns: "50px 75px 3fr 2fr 1fr" }}
+                  style={{ gridTemplateColumns: "50px 75px 3fr 1fr" }}
                 >
                   <div className="text-xl">
                     <button
@@ -80,11 +80,7 @@ export default function List() {
                     </button>
                   </div>
                   <div className="text-xl">#</div>
-                  <div className="text-left">Item Name</div>
-                  <div>
-                    <span className="hidden sm:inline-block">Quantity</span>
-                    <span className="sm:hidden">Qty.</span>
-                  </div>
+                  <div className="text-left">Todo</div>
                   <div className="flex items-center justify-center gap-2">
                     <i className="fa-solid fa-wrench text-base sm:hidden"></i>
                     <span className="max-sm:hidden">Action</span>
@@ -93,7 +89,7 @@ export default function List() {
                 {items
                   ?.filter((item) => item.category === params.group)
                   ?.map((item, index) => (
-                    <Item key={item.id} index={index + 1} {...item} />
+                    <TodoItem key={item.id} index={index + 1} {...item} />
                   ))}
               </div>
             </div>

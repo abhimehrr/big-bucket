@@ -5,7 +5,6 @@ export function Breadcrumbs() {
   const location = useLocation();
   const bread = location?.pathname?.split("/")?.filter((f) => f);
 
-  
   return (
     <div className="pt-2 flex flex-wrap items-center gap-2 tracking-wide">
       <div className="flex items-center gap-2">
@@ -25,7 +24,7 @@ export function Breadcrumbs() {
         <div key={path} className="flex items-center gap-2">
           {bread.length === i + 1 ? (
             <button className="font-medium capitalize hover:text-primary">
-              {path?.split('-')?.join(' ')}
+              {path?.split("-")?.join(" ")}
             </button>
           ) : (
             <Fragment>
@@ -33,7 +32,7 @@ export function Breadcrumbs() {
                 to={path}
                 className="font-medium capitalize hover:text-primary"
               >
-                {path?.split('-')?.join(' ')}
+                {path?.split("-")?.join(" ")}
               </Link>
               <i className="fa-solid fa-greater-than text-xs"></i>
             </Fragment>
@@ -44,11 +43,10 @@ export function Breadcrumbs() {
   );
 }
 
-
 export function Breadcrumb() {
   const location = useLocation();
   const bread = location?.pathname?.split("/")?.filter((f) => f);
-  const [query, setQuery] = useSearchParams()
+  const [query] = useSearchParams();
 
   return (
     <div className="pt-2 flex flex-wrap items-center gap-2 tracking-wide">
@@ -69,15 +67,15 @@ export function Breadcrumb() {
         <div key={path} className="flex items-center gap-2">
           {bread.length === i + 1 ? (
             <button className="font-medium capitalize hover:text-primary">
-              {query.get('name')}
+              {query.get("name")}
             </button>
           ) : (
             <Fragment>
               <Link
-                to={path}
+                to={path === "todo" ? "/" : path}
                 className="font-medium capitalize hover:text-primary"
               >
-                {query.get('name')}
+                {path}
               </Link>
               <i className="fa-solid fa-greater-than text-xs"></i>
             </Fragment>

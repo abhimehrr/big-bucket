@@ -3,19 +3,15 @@ import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
 
 // Components
-import { updateItem } from "../../store/slices/itemSlice";
-import { closeModal } from "../../utils/closeModal";
-import { LoaderFluid } from "../tiny/Loader";
-import Unit from "../modals/UnitDropdown";
+import { updateItem } from "../../../store/slices/todoSlice";
+import { closeModal } from "../../../utils/closeModal";
+import { LoaderFluid } from "../../tiny/Loader";
 
-export default function UpdateItem({ item, close }) {
+export default function UpdateTodoItem({ item, close }) {
   const [errMsg, setErrMsg] = useState("");
   const [loader, setLoader] = useState(false);
 
   const [itemName, setItemName] = useState(item.itemName);
-  const [qty, setQty] = useState(item.qty);
-  const [opt, setOpt] = useState(item.unit);
-
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -23,9 +19,6 @@ export default function UpdateItem({ item, close }) {
 
     if (itemName.length < 1) {
       setErrMsg("Enter item name");
-      return;
-    } else if (qty < 1) {
-      setErrMsg("Enter quantity");
       return;
     } else {
       setErrMsg("");
@@ -36,8 +29,6 @@ export default function UpdateItem({ item, close }) {
       updateItem({
         id: item.id,
         itemName,
-        qty,
-        unit: opt,
       })
     );
     setLoader(false);
@@ -89,30 +80,6 @@ export default function UpdateItem({ item, close }) {
                 autoFocus={true}
                 placeholder="Item name"
                 className="w-full bg-transparent border border-primary focus:ring ring-accent focus:bg-background/50 py-1 px-2 text-lg outline-none rounded transition-all"
-              />
-            </div>
-            <div className="relative grid grid-cols-2 gap-4">
-              <div className="w-full">
-                <label htmlFor="quantity" className="sr-only">
-                  quantity
-                </label>
-                <input
-                  type="number"
-                  name="quantity"
-                  id="quantity"
-                  value={qty}
-                  onChange={(e) => setQty(e.target.value)}
-                  placeholder="Qty."
-                  className="w-full bg-transparent border border-primary focus:ring ring-accent focus:bg-background/50 py-1 px-2 text-lg outline-none rounded transition-all"
-                />
-              </div>
-              <Unit
-                defaultValue={opt}
-                handleOnChange={(e) => {
-                  const value = e.target.value;
-                  localStorage.setItem("unit", value);
-                  setOpt(value);
-                }}
               />
             </div>
           </div>

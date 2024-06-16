@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteItem, selectItem } from "../../store/slices/itemSlice";
+import { deleteItem, selectItem } from "../../store/slices/todoSlice";
 
 // Components
-import UpdateItem from "../modals/UpdateItem";
 import { ToastConfirm } from "../tiny/Dialog";
+import UpdateTodoItem from "./modal/UpdateTodoItem";
 
-export default function Item({ index, id, isChecked, itemName, qty, unit }) {
+export default function TodoItem({ index, id, isChecked, itemName }) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(isChecked);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -24,7 +24,7 @@ export default function Item({ index, id, isChecked, itemName, qty, unit }) {
   ) : (
     <div
       className="grid text-center md:px-4 border-b border-text/40 hover:bg-secondary/20 transition-all py-2 rounded-b-md"
-      style={{ gridTemplateColumns: "50px 75px 3fr 2fr 1fr" }}
+      style={{ gridTemplateColumns: "50px 75px 3fr 1fr" }}
     >
       <div className="text-accent text-xl">
         <button
@@ -43,16 +43,12 @@ export default function Item({ index, id, isChecked, itemName, qty, unit }) {
       </div>
       <div className="text-xl">{index}</div>
       <div className="text-left capitalize">{itemName}</div>
-      <div className="whitespace-nowrap" title={unit?.split("^").join(" - ")}>
-        <span className="mr-1.5">{qty}</span>
-        <span className="uppercase font-medium">{unit?.split("^")[0]}</span>
-      </div>
       <div className="flex items-start justify-center gap-3 mr-2">
         <button
           onClick={() => setShowUpdateModal(!showUpdateModal)}
           className="tracking-wide group"
           title="Update Item"
-        > 
+        >
           <i className="fa-solid fa-pencil text-base group-hover:text-yellow-500"></i>
         </button>
         <button
@@ -66,10 +62,7 @@ export default function Item({ index, id, isChecked, itemName, qty, unit }) {
 
       {/* Modal */}
       {showUpdateModal && (
-        <UpdateItem
-          item={{ id, itemName, qty, unit }}
-          close={setShowUpdateModal}
-        />
+        <UpdateTodoItem item={{ id, itemName }} close={setShowUpdateModal} />
       )}
     </div>
   );

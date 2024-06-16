@@ -11,6 +11,7 @@ import { LoaderFluid } from "../tiny/Loader";
 export default function AddCategory({ close }) {
   const [errMsg, setErrMsg] = useState("");
   const [loader, setLoader] = useState(false);
+  const [todoMode, setTodoMode] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -28,6 +29,7 @@ export default function AddCategory({ close }) {
     dispatch(
       addCategory({
         name: value,
+        todoMode
       })
     );
     setLoader(false);
@@ -65,7 +67,7 @@ export default function AddCategory({ close }) {
         </h1>
         <form onSubmit={handleSubmit} className="relative">
           <div className="absolute -top-7 text-red-500">{errMsg}</div>
-          <div className="my-8 w-full">
+          <div className="mt-8 w-full">
             <label htmlFor="name" className="sr-only">
               Name
             </label>
@@ -77,6 +79,22 @@ export default function AddCategory({ close }) {
               placeholder="Category name"
               className="w-full bg-transparent border border-primary focus:ring ring-accent focus:bg-background/50 py-1 px-2 text-lg outline-none rounded transition-all"
             />
+          </div>
+          <div className="my-4">
+            <button
+              onClick={() => setTodoMode((pre) => !pre)}
+              type="button"
+              className={`text-lg flex items-center gap-2 hover:text-text ${
+                !todoMode && "text-text/70"
+              } transition-all`}
+            >
+              <i
+                className={`fa-${
+                  todoMode ? "solid text-accent" : "regular"
+                } fa-square-check text-xl`}
+              ></i>
+              <span>Turn on Todo Mode</span>
+            </button>
           </div>
           {loader && (
             <div className="absolute top-10 w-full">
